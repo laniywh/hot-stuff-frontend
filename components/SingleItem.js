@@ -1,9 +1,9 @@
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import React, { Component } from "react";
-import Error from "./ErrorMessage";
-import styled from "styled-components";
-import Head from "next/head";
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import Head from 'next/head';
+import Error from './ErrorMessage';
 
 const SingleItemStyles = styled.div`
   max-width: 1200px;
@@ -42,7 +42,7 @@ class SingleItem extends Component {
       <Query
         query={SINGLE_ITEM_QUERY}
         variables={{
-          id: this.props.id
+          id: this.props.id,
         }}
       >
         {({ error, loading, data }) => {
@@ -50,7 +50,7 @@ class SingleItem extends Component {
           if (loading) return <p>Loading...</p>;
           if (!data.item) return <p>No item found for ID {this.props.id}</p>;
           console.log(data);
-          const item = data.item;
+          const { item } = data;
           return (
             <SingleItemStyles>
               <Head>

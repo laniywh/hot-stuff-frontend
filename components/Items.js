@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import styled from "styled-components";
-import Item from "./Item";
-import Pagination from "./Pagination";
-import { perPage } from "../config";
+import React, { Component } from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import styled from 'styled-components';
+import Item from './Item';
+import Pagination from './Pagination';
+import { perPage } from '../config';
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
@@ -33,14 +33,14 @@ const ItemsList = styled.div`
 
 export default class Items extends Component {
   render() {
-    const page = this.props.page;
+    const { page } = this.props;
     return (
       <Center>
         <Pagination page={page} />
         <Query
           query={ALL_ITEMS_QUERY}
           variables={{
-            skip: (page - 1) * perPage
+            skip: (page - 1) * perPage,
           }}
         >
           {({ data, error, loading }) => {

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
-import { ALL_ITEMS_QUERY } from "./Items";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import { ALL_ITEMS_QUERY } from './Items';
 
 const DELETE_ITEM_MUTATION = gql`
   mutation DELETE_ITEM_MUTATION($id: ID!) {
@@ -17,26 +17,24 @@ class DeleteItem extends Component {
     // 1. read the cache for the items we want
     const data = cache.readQuery({ query: ALL_ITEMS_QUERY });
     // 2. filter the deleted item out
-    data.items = data.items.filter(
-      item => item.id !== payload.data.deleteItem.id
-    );
+    data.items = data.items.filter(item => item.id !== payload.data.deleteItem.id);
     // 3. put items back
     cache.writeQuery({ query: ALL_ITEMS_QUERY, data });
   };
+
   render() {
     return (
       <Mutation
         mutation={DELETE_ITEM_MUTATION}
         variables={{
-          id: this.props.id
+          id: this.props.id,
         }}
         update={this.update}
       >
         {(deleteItem, { error }) => (
           <button
             onClick={() => {
-              if (confirm("Do you really want to delete this item?"))
-                deleteItem();
+              if (confirm('Do you really want to delete this item?')) deleteItem();
             }}
           >
             {this.props.children}
