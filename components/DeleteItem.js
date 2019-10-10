@@ -33,8 +33,13 @@ class DeleteItem extends Component {
       >
         {(deleteItem, { error }) => (
           <button
+            type="button"
             onClick={() => {
-              if (confirm('Do you really want to delete this item?')) deleteItem();
+              if (confirm('Do you really want to delete this item?')) {
+                deleteItem().catch(err => {
+                  alert(err.message);
+                });
+              }
             }}
           >
             {this.props.children}
