@@ -30,6 +30,12 @@ class DeleteItem extends Component {
           id: this.props.id,
         }}
         update={this.update}
+        optimisticResponse={{
+          __typename: 'Mutation',
+          deleteItem: {
+            id: this.props.id,
+          },
+        }}
       >
         {(deleteItem, { error }) => (
           <button
