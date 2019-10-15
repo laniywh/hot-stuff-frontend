@@ -30,7 +30,15 @@ class AddToCart extends React.Component {
         // update={this.update}
       >
         {(addToCart, { loading }) => (
-          <button type="button" onClick={addToCart} disabled={loading}>
+          <button
+            type="button"
+            onClick={() => {
+              addToCart().catch(err => {
+                alert(err.message);
+              });
+            }}
+            disabled={loading}
+          >
             Add{loading && 'ing'} to cart
           </button>
         )}
