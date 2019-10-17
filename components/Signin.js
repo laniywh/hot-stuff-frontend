@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
@@ -13,6 +14,10 @@ const SIGNIN_MUTATION = gql`
       email
     }
   }
+`;
+
+const TestAccount = styled.div`
+  font-size: 12px;
 `;
 
 class Signin extends Component {
@@ -68,6 +73,12 @@ class Signin extends Component {
 
               <button type="submit">Sign in</button>
             </fieldset>
+
+            <TestAccount>
+              <p>Test account:</p>
+              <p>Email: admin@test.com</p>
+              <p>Password: 1234</p>
+            </TestAccount>
           </Form>
         )}
       </Mutation>
